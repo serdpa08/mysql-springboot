@@ -1,0 +1,44 @@
+version: "3"
+
+services:
+ # miservicio_php:
+  #  build: docker-images/php-apache
+    # Nombre arbitrario:
+   # image: mi-php:7-apache
+   # volumes:
+      # Montamos nuestra web desde fuera en el directorio web del contenedor
+    #  - ./miweb/:/var/www/html
+    #ports:
+    #  - 80:80
+    #networks:
+    #  - mired
+  miservicio_mysql:
+    image: mysql:5.7
+    environment:
+      - MYSQL_DATABASE=users
+      - MYSQL_ROOT_PASSWORD=sergio
+      - MYSQL_USER=sergio
+      - MYSQL_PASSWORD=sergio
+    volumes:
+      # Montamos un volumen para MySQL para no perder los datos de bd
+      
+      - ./docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+    ports:
+      - 3306:3306
+    network_mode: host
+      
+
+##  miservicio_java:
+    
+    # Nombre arbitrario:
+#    image: openjdk:8-jre
+ #   volumes:
+      # Montamos nuestra web desde fuera en el directorio web del contenedor
+  #    - ./Server/:/Server:rw
+  #  ports:
+   #   - 8080:8080
+    #entrypoint: ["java", "-jar", "/Server/huerto-0.0.1-SNAPSHOT.jar"]
+    #networks:
+    #  - mired
+   
+ 
